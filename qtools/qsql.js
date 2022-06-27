@@ -2,8 +2,9 @@ import sqlite3 from "sqlite3";
 import * as qsys from "./qsys.js";
 
 //view and manage SQLite files on Windows/Mac/Linux with: https://sqlitebrowser.org/dl
-const absoluteDbPathAndFileName =
-  qsys.buildSystemAbsolutePathAndFileName("data/site.sqlite");
+const absoluteDbPathAndFileName = qsys.buildSystemAbsolutePathAndFileName(
+  "data/northwind_database.sqlite"
+);
 
 /**
  * Returns promise for an array of objects based on an SQL query.
