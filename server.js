@@ -39,6 +39,21 @@ WHERE EmployeeID = ${id}
   res.send(employees[0]);
 });
 
+app.get("/employees-territories/:id", async (req, res) => {
+  const id = req.params.id;
+  const records = await qsql.getRecordsWithSql(`
+  SELECT e.EmployeeID as id, e.LastName as lastName, e.FirstName as firstName, trim(t.TerritoryDescription) as territory FROM Employees AS e
+  JOIN EmployeeTerritories AS et ON e.EmployeeID = et.EmployeeID
+  JOIN Territories AS t ON et.TerritoryID = t.TerritoryID
+  WHERE e.EmployeeID = ${id}	
+`);
+  const obj = {
+    name: records[0].firstName + " " + records[0].lastName,
+    territories: records.map((m) => m.territory),
+  };
+  res.send(obj);
+});
+
 app.listen(port, () => {
   console.log(`listening on http://localhost:${port}`);
 });
