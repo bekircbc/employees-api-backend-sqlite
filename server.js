@@ -25,6 +25,20 @@ app.get("/employees", async (req, res) => {
   res.send(employees);
 });
 
+app.get("/employees/:id", async (req, res) => {
+  const id = req.params.id;
+  const employees = await qsql.getRecordsWithSql(`
+SELECT 
+EmployeeID as id,
+trim(FirstName || ' ' || LastName) as name,
+Title as title,
+Notes as notes
+FROM Employees
+WHERE EmployeeID = ${id}
+`);
+  res.send(employees[0]);
+});
+
 app.listen(port, () => {
   console.log(`listening on http://localhost:${port}`);
 });
