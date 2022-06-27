@@ -54,4 +54,6 @@
 
 - The History of SQL Standards [https://learnsql.com/blog/history-of-sql-standards/]
 
+- SQL Functions [https://www.sqlite.org/lang_corefunc.html]
+
 ## Serach for "How can I convert jason data to SQL data". Is there a simple way?
